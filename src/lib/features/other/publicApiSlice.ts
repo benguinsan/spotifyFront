@@ -6,7 +6,7 @@ import {
   DetailAlbum,
   DetailPlaylist,
   DetailTrack, Genre, Genres,
-  Playlists, RecentlyListenTracks, Subscription,
+  Playlists, 
   Tracks,
 } from "@/types/types";
 
@@ -63,32 +63,24 @@ const publicApiSlice = apiPublicSlice.injectEndpoints({
       query: (slug) => `/playlists/${slug}/`,
       providesTags: ["Playlist"],
     }),
-    listRecentlyListenTracks: builder.query<RecentlyListenTracks, any | void>({
-      query: ({page = 1, userId}) =>
-        `/tracks/recently/user/${userId}/?page=${page}`,
-      providesTags: ["Track"],
-    }),
-    listRecentlyMyListenTracks: builder.query<RecentlyListenTracks, any | void>({
-      query: ({page = 1}) =>
-        `/tracks/recently/my/?page=${page}`,
-      providesTags: ["Track"],
-    }),
+    // listRecentlyListenTracks: builder.query<RecentlyListenTracks, any | void>({
+    //   query: ({page = 1, userId}) =>
+    //     `/tracks/recently/user/${userId}/?page=${page}`,
+    //   providesTags: ["Track"],
+    // }),
+    // listRecentlyMyListenTracks: builder.query<RecentlyListenTracks, any | void>({
+    //   query: ({page = 1}) =>
+    //     `/tracks/recently/my/?page=${page}`,
+    //   providesTags: ["Track"],
+    // }),
     listGenres: builder.query<Genres, any | void>({
       query: ({page = 1}) =>
-        `/others/genres/?page=${page}`,
+        `/genres/genres/?page=${page}`,
       providesTags: ["Genre"],
     }),
     retrieveGenre: builder.query<Genre, string>({
-      query: (slug) => `/others/genres/${slug}/`,
+      query: (slug) => `/genres/genres/${slug}/`,
       providesTags: ["Genre"],
-    }),
-    listSubscription: builder.query<Subscription[], any | void>({
-      query: ({}) => `/subscriptions/`,
-      providesTags: ["Subscription"],
-    }),
-    retrieveSubscription: builder.query<Subscription, number>({
-      query: (id) => `/subscriptions/${id}/`,
-      providesTags: ["Subscription"],
     }),
   })
 })
@@ -104,10 +96,8 @@ export const {
   useRetrieveListenTrackQuery,
   useListPlaylistQuery,
   useRetrievePlaylistQuery,
-  useListRecentlyListenTracksQuery,
-  useListRecentlyMyListenTracksQuery,
+  // useListRecentlyListenTracksQuery,
+  // useListRecentlyMyListenTracksQuery,
   useListGenresQuery,
   useRetrieveGenreQuery,
-  useListSubscriptionQuery,
-  useRetrieveSubscriptionQuery,
 } = publicApiSlice

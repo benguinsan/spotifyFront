@@ -22,16 +22,15 @@ import {Calendar} from "@/components/ui/calendar";
 import useTrackCreateForm from "@/hooks/useTrackCreateForm";
 import {CaretSortIcon} from "@radix-ui/react-icons";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
-import {Genres, License, ListDetailAlbums} from "@/types/types";
+import {Genres, ListDetailAlbums} from "@/types/types";
 
 
 interface Props {
   albums: ListDetailAlbums | undefined;
-  license: License[] | undefined;
   genres: Genres | undefined;
 }
 
-export function TrackCreateForm({albums, license, genres}: Props) {
+export function TrackCreateForm({albums, genres}: Props) {
   const {
     form,
     onSubmit,
@@ -103,7 +102,7 @@ export function TrackCreateForm({albums, license, genres}: Props) {
                       {field.value
                         ? albums?.results?.find(
                           (album) => album.id === field.value
-                        )?.title
+                        )?.title || "Select your album"
                         : "Select your album"}
                       <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
                     </Button>
@@ -111,7 +110,7 @@ export function TrackCreateForm({albums, license, genres}: Props) {
                 </PopoverTrigger>
                 <PopoverContent className="w-[280px] md:w-[340px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search my album..."/>
+                    <CommandInput placeholder="Search album..."/>
                     <CommandEmpty>No album found.</CommandEmpty>
                     <CommandGroup>
                       <CommandList>
@@ -120,7 +119,8 @@ export function TrackCreateForm({albums, license, genres}: Props) {
                             value={album.title}
                             key={album.id}
                             onSelect={() => {
-                              form.setValue("album", album.id)
+                              console.log("Selected album:", album.id);
+                              form.setValue("album", album.id);
                             }}
                           >
                             <Check
@@ -131,11 +131,15 @@ export function TrackCreateForm({albums, license, genres}: Props) {
                                   : "opacity-0"
                               )}
                             />
-                            <Avatar className="rounded-md">
-                              <AvatarImage src={album.image}
-                                           className="aspect-square object-cover h-8 w-8 mt-1 rounded-md "/>
-                            </Avatar>
-
+                            {album.image && (
+                              <Avatar className="rounded-md mr-2">
+                                <AvatarImage src={album.image}
+                                             className="aspect-square object-cover h-8 w-8 rounded-md"/>
+                                <AvatarFallback className="h-8 w-8 rounded-md">
+                                  {album.title.substring(0, 2)}
+                                </AvatarFallback>
+                              </Avatar>
+                            )}
                             {album.title}
                           </CommandItem>
                         ))}
@@ -202,66 +206,6 @@ export function TrackCreateForm({albums, license, genres}: Props) {
                             </Avatar>
 
                             {genre.name}
-                          </CommandItem>
-                        ))}
-                      </CommandList>
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="license"
-          render={({field}) => (
-            <FormItem className='flex flex-col'>
-              <FormLabel>License</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-auto justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? license?.find(
-                          (item) => item.id === field.value
-                        )?.name
-                        : "Select your license"}
-                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[280px] md:w-[340px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search my license..."/>
-                    <CommandEmpty>No license found.</CommandEmpty>
-                    <CommandGroup>
-                      <CommandList>
-                        {license?.map((item) => (
-                          <CommandItem
-                            value={item.name}
-                            key={item.id}
-                            onSelect={() => {
-                              form.setValue("license", item.id)
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-1 h-4 w-4",
-                                item.id === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {item.name}
                           </CommandItem>
                         ))}
                       </CommandList>

@@ -12,6 +12,7 @@ import {Input} from "@/components/ui/input";
 import {User} from "@/types/types";
 import {useUpdateUserProfileMutation} from "@/lib/features/auth/authApiSlice";
 import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 import {useRouter} from "next/navigation";
 import {z} from "zod";
 import {useForm} from "react-hook-form";

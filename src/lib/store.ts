@@ -3,7 +3,7 @@ import {apiSlice} from "@/lib/services/apiSlice";
 import {apiPublicSlice} from "@/lib/services/apiPublicSlice";
 import authReducer from "@/lib/features/auth/authSlice";
 import trackReducer from "@/lib/features/tracks/trackSlice";
-import otherReducer from "@/lib/features/other/otherSlice";
+import otherReducer from "@/lib/features/other/genresSlice";
 
 export const makeStore = () => {
   return configureStore({

@@ -5,7 +5,7 @@ import FullScreenSpinner from "@/components/general/FullScreenSpinner";
 import {useListMyTracksQuery} from "@/lib/features/tracks/trackApiSlice";
 import MyTracksTable from "@/components/tracks/MyTracksTable";
 import {useListMyAlbumQuery} from "@/lib/features/albums/albumApiSlice";
-import {useListMeArtistLicenseQuery} from "@/lib/features/artists/artistApiSlice";
+
 
 
 export function MyTracksContainer() {
@@ -24,20 +24,15 @@ export function MyTracksContainer() {
     isLoading: isLoadingT,
     isFetching: isFetchingT
   } = useListMyTracksQuery({page, search});
-  const {
-    data: license,
-    isLoading: isLoadingL,
-    isFetching: isFetchingL
-  } = useListMeArtistLicenseQuery({});
 
-  const isLoading = (isLoadingA || isFetchingA || isLoadingT || isFetchingT || isLoadingL || isFetchingL)
+  const isLoading = (isLoadingA || isFetchingA || isLoadingT || isFetchingT)
 
   return (
     <div className="flex w-full flex-col">
       <div className="flex flex-col sm:py-2 sm:px-2 bg-muted/40 rounded-2xl">
         {isLoading ? <FullScreenSpinner/> :
           <div className="flex-1 items-start">
-            <MyTracksTable tracks={tracks} albums={albums} license={license} page={page} setPage={setPage}/>
+            <MyTracksTable tracks={tracks} albums={albums} page={page} setPage={setPage}/>
           </div>
         }
       </div>

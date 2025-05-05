@@ -12,7 +12,7 @@ import {
 import {Input} from "@/components/ui/input"
 import Loader from "@/components/general/Loader";
 import {Textarea} from "@/components/ui/textarea";
-import useLicenseCreateForm from "@/hooks/useLicenseCreateForm";
+import useLicenseCreateForm from "@/components/hooks/useLicenseCreateForm";
 
 
 export function LicenseCreateForm() {

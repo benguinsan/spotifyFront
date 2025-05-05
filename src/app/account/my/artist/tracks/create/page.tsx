@@ -11,7 +11,6 @@ import {useRouter} from "next/navigation";
 import {TrackCreateForm} from "@/components/forms/track-create-form";
 import {useListMyAlbumQuery} from "@/lib/features/albums/albumApiSlice";
 import FullScreenSpinner from "@/components/general/FullScreenSpinner";
-import {useListMeArtistLicenseQuery} from "@/lib/features/artists/artistApiSlice";
 import {useListGenresQuery} from "@/lib/features/other/publicApiSlice";
 
 export default function Page() {
@@ -21,17 +20,12 @@ export default function Page() {
     isFetching: isFetchingA,
   } = useListMyAlbumQuery({})
   const {
-    data: license,
-    isLoading: isLoadingL,
-    isFetching: isFetchingL,
-  } = useListMeArtistLicenseQuery({})
-  const {
     data: genres,
     isLoading: isLoadingG,
     isFetching: isFetchingG,
   } = useListGenresQuery({})
 
-  const isLoading = isLoadingA || isFetchingA || isLoadingL || isFetchingL || isLoadingG || isFetchingG;
+  const isLoading = isLoadingA || isFetchingA || isLoadingG || isFetchingG;
 
   const router = useRouter();
 
@@ -57,7 +51,7 @@ export default function Page() {
         </div>
         <Separator/>
         {isLoading ? <FullScreenSpinner/> : (
-          <TrackCreateForm albums={albums} license={license} genres={genres}/>
+          <TrackCreateForm albums={albums} genres={genres}/>
         )}
       </div>
     </>

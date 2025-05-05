@@ -11,6 +11,7 @@ import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTr
 import {Input} from "@/components/ui/input";
 import {Artist} from "@/types/types";
 import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 import {useRouter} from "next/navigation";
 import {z} from "zod";
 import {useForm} from "react-hook-form";

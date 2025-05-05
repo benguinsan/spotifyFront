@@ -1,16 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-interface OtherState {
+interface GenresState {
   searchQuery: string;
 }
 
 
 const initialState = {
   searchQuery: "",
-} as OtherState;
+} as GenresState;
 
-export const otherSlice = createSlice({
-  name: "other",
+export const genresSlice = createSlice({
+  name: "genres",
   initialState,
   reducers: {
     setSearchQuery: (state, action) => {
@@ -19,5 +19,5 @@ export const otherSlice = createSlice({
   },
 });
 
-export const {setSearchQuery,} = otherSlice.actions;
-export default otherSlice.reducer;
+export const {setSearchQuery,} = genresSlice.actions;
+export default genresSlice.reducer;

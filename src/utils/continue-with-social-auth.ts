@@ -1,6 +1,7 @@
 import {toast} from "react-toastify";
 
 
+
 export default async function continueWithSocialAuth(provider: string, redirect: string) {
   try {
     const url = `${process.env.NEXT_PUBLIC_HOST}/api/v1/auth/o/${provider}/?redirect_uri=${

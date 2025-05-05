@@ -1,5 +1,5 @@
 import {apiSlice} from "@/lib/services/apiSlice";
-import {Artist, ArtistsLiked, License, UpdateLicense} from "@/types/types";
+import {Artist, ArtistsLiked} from "@/types/types";
 
 
 const artistApiSlice = apiSlice.injectEndpoints({
@@ -41,37 +41,7 @@ const artistApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['MyArtist'],
     }),
-    listMeArtistLicense: builder.query<License[], any>({
-      query: ({}) => `/artists/me/license/`,
-      providesTags: ['MyArtist']
-    }),
-    postMeArtistLicense: builder.mutation<License, { body: UpdateLicense }>({
-      query: ({body}) => ({
-        url: `/artists/me/license/`,
-        method: 'POST',
-        body: body,
-      }),
-      invalidatesTags: ['MyArtist'],
-    }),
-    retrieveMeArtistLicense: builder.query<License, any>({
-      query: ({id}) => `/artists/me/license/${id}`,
-      providesTags: ['MyArtist']
-    }),
-    updateMeArtistLicense: builder.mutation<License, { id: number | undefined, body: UpdateLicense }>({
-      query: ({id, body}) => ({
-        url: `/artists/me/license/${id}/`,
-        method: 'PUT',
-        body: body,
-      }),
-      invalidatesTags: ['MyArtist'],
-    }),
-    deleteMeArtistLicense: builder.mutation<License, any>({
-      query: ({id}) => ({
-        url: `/artists/me/license/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['MyArtist'],
-    }),
+    
   }),
 });
 
@@ -82,9 +52,4 @@ export const {
   useRetrieveMeArtistQuery,
   useUpdateMeArtistMutation,
   useDeleteMeArtistMutation,
-  useListMeArtistLicenseQuery,
-  usePostMeArtistLicenseMutation,
-  useRetrieveMeArtistLicenseQuery,
-  useUpdateMeArtistLicenseMutation,
-  useDeleteMeArtistLicenseMutation,
 } = artistApiSlice

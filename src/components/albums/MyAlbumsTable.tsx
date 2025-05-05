@@ -13,6 +13,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 import {Checkbox} from "@/components/ui/checkbox";
 import {
   Pagination,

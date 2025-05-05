@@ -73,6 +73,9 @@ export default function ProfileDropdownMenu() {
         <DropdownMenuItem onClick={() => router.push(profileMyUrl)}>
           <span>Profile</span>
         </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(accountMySettingsUrl)}>
+          <span>Settings</span>
+        </DropdownMenuItem>
       </>
     );
   } else if (user.type_profile === 'Artist') {
@@ -87,6 +90,9 @@ export default function ProfileDropdownMenu() {
         <DropdownMenuItem onClick={() => router.push(artistProfileMyUrl)}>
           <span>Artist profile</span>
         </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(accountMySettingsUrl)}>
+          <span>Settings</span>
+        </DropdownMenuItem>
       </>
     )
   }
@@ -94,18 +100,18 @@ export default function ProfileDropdownMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="border-1 border-black focus:outline-none focus:ring-2 focus:ring-green-500">
+      <DropdownMenuTrigger asChild className="border-1 border-black">
         <Button size='icon' variant='outline'
-                className="bg-black bg-opacity-50 h-[2.15rem] w-[2.15rem] rounded-full p-0 flex items-center justify-center">
+                className="bg-black bg-opacity-50 h-[2.15rem] w-[2.15rem] rounded-full">
           {artist ? (
             <Avatar className="h-7 w-7 hover:scale-110 transition duration-150">
-              <AvatarImage className="aspect-square object-cover" src={artist.image || undefined} alt={artist.display_name}/>
-              <AvatarFallback style={{background: '#fff', color: '#222'}}>{artist.display_name?.[0]?.toUpperCase() || 'A'}</AvatarFallback>
+              <AvatarImage className="aspect-square object-cover" src={artist.image} alt={artist.display_name}/>
+              <AvatarFallback>{artist.display_name}</AvatarFallback>
             </Avatar>
           ) : (
             <Avatar className="h-7 w-7 hover:scale-110 transition duration-150">
-              <AvatarImage className="aspect-square object-cover" src={user.image || undefined} alt={user.display_name}/>
-              <AvatarFallback style={{background: '#fff', color: '#222'}}>{user.display_name?.[0]?.toUpperCase() || 'U'}</AvatarFallback>
+              <AvatarImage className="aspect-square object-cover" src={user.image} alt={user.display_name}/>
+              <AvatarFallback>{user.display_name}</AvatarFallback>
             </Avatar>
           )}
         </Button>

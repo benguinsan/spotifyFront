@@ -10,13 +10,11 @@ import ContentSection from "@/components/general/content-section";
 import {
   accountMyAnalyticsUrl,
   accountMyArtistAlbumsUrl,
-  accountMyArtistLicenseUrl,
   accountMyArtistTracksUrl,
   accountMyHelpUrl,
   accountMyPaymentUrl,
   accountMyProfileArtistUrl,
   accountMySettingsUrl,
-  accountMySubscriptionUrl,
   accountMyUrl, profileMyUrl
 } from "@/utils/consts";
 import {useAppSelector} from "@/lib/hooks";
@@ -42,14 +40,6 @@ export default function SettingsLayout({children}: SettingsLayoutProps) {
       {
         title: "Profile",
         href: profileMyUrl,
-      },
-      {
-        title: "Manage your subscription",
-        href: accountMySubscriptionUrl,
-      },
-      {
-        title: "Payment",
-        href: accountMyPaymentUrl,
       },
       {
         title: "Settings",
@@ -79,24 +69,8 @@ export default function SettingsLayout({children}: SettingsLayoutProps) {
         href: accountMyArtistAlbumsUrl,
       },
       {
-        title: "Artist license",
-        href: accountMyArtistLicenseUrl,
-      },
-      {
-        title: "Manage your subscription",
-        href: accountMySubscriptionUrl,
-      },
-      {
-        title: "Payment",
-        href: accountMyPaymentUrl,
-      },
-      {
         title: "Settings",
         href: accountMySettingsUrl,
-      },
-      {
-        title: "Analytics",
-        href: accountMyAnalyticsUrl,
       },
       {
         title: "Help",

@@ -18,20 +18,13 @@ const registerFormSchema = z.object({
     })
     .max(40, {
       message: "Password must not be longer then 40 characters"
-    })
-    .refine(
-      (password) => /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password),
-      {
-        message: "Password must contain both letters and numbers"
-      }
-    ),
+    }),
   re_password: z
     .string(),
 }).refine((data) => data.password === data.re_password, {
   path: ["re_password"],
   message: "Passwords don't match",
 });
-
 
 type RegisterFormValue = z.infer<typeof registerFormSchema>
 
@@ -52,11 +45,10 @@ export default function useRegisterForm() {
   const router = useRouter()
 
   function onSubmit(data: RegisterFormValue) {
-    console.log('Form submission data:', data);
-    
     registerUser({...data})
       .unwrap()
       .then(() => {
+        toast.info("Please check email to verify account.")
         router.push(loginUrl)
       })
       .catch((error) => {

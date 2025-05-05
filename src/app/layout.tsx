@@ -10,6 +10,7 @@ import PreviewPlayer from "@/components/tracks/player/PreviewPlayer";
 import Setup from "@/components/utils/Setup";
 import {usePathname} from "next/navigation";
 import {accountAuthUrl} from "@/utils/consts";
+import 'react-toastify/dist/ReactToastify.css';
 
 const fontSans = Inter({
   subsets: ["latin"],

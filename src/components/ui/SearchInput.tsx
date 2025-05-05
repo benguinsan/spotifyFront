@@ -3,7 +3,7 @@
 import {Search, X} from "lucide-react";
 import {useRouter} from "next/navigation";
 import {useAppSelector} from "@/lib/hooks";
-import {setSearchQuery} from "@/lib/features/other/otherSlice";
+import {setSearchQuery} from "@/lib/features/other/genresSlice";
 import {useDispatch} from "react-redux";
 
 export default function SearchInput() {

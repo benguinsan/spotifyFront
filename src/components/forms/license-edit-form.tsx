@@ -13,7 +13,7 @@ import {Input} from "@/components/ui/input"
 import Loader from "@/components/general/Loader";
 import {Textarea} from "@/components/ui/textarea";
 import {License} from "@/types/types";
-import useLicenseEditForm from "@/hooks/useLicenseEditForm";
+import useLicenseEditForm from "@/components/hooks/useLicenseEditForm";
 
 interface Props {
   license: License | undefined;

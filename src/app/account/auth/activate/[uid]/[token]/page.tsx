@@ -3,6 +3,7 @@ import {useActivationMutation} from "@/lib/features/auth/authApiSlice";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 import {loginUrl} from "@/utils/consts";
 
 interface Props {

@@ -2,7 +2,7 @@
 
 import {Dot, Music} from "lucide-react";
 import Image from "next/image";
-import {useListRecentlyMyListenTracksQuery} from "@/lib/features/other/publicApiSlice";
+// import {useListRecentlyMyListenTracksQuery} from "@/lib/features/other/publicApiSlice";
 import Link from "next/link";
 import PlaylistCards from "@/components/playlists/PlaylistCards";
 import TracksTable from "@/components/tracks/TracksTable";
@@ -31,11 +31,11 @@ export default function Page() {
     isLoading: isLoadingP,
     isFetching: isFetchingP,
   } = useListMyPlaylistQuery({})
-  const {
-    data: recentlyTracks,
-    isLoading: isLoadingReTracks,
-    isFetching: isFetchingReTracks,
-  } = useListRecentlyMyListenTracksQuery({})
+  // const {
+  //   data: recentlyTracks,
+  //   isLoading: isLoadingReTracks,
+  //   isFetching: isFetchingReTracks,
+  // } = useListRecentlyMyListenTracksQuery({})
   const {
     data: userFollowing,
     isLoading: isLoadingFollowing,
@@ -48,7 +48,8 @@ export default function Page() {
   } = useListUserFollowersQuery({userId}, {skip: !userId})
 
   const load = (
-    isLoadingP || isFetchingP || isLoadingReTracks || isFetchingReTracks ||
+    isLoadingP || isFetchingP || 
+    // isLoadingReTracks || isFetchingReTracks ||
     isLoadingFollowers || isFetchingFollowers || isLoadingFollowing || isFetchingFollowing
   )
 
@@ -124,7 +125,7 @@ export default function Page() {
               <UserMyDialogDropdown user={user}/>
             </div>
 
-            {(recentlyTracks?.count || 0) > 0 && (
+            {/* {(recentlyTracks?.count || 0) > 0 && (
               <TitleShowAll
                 title="Top tracks this month"
                 titlePB="Only visible to you"
@@ -138,7 +139,7 @@ export default function Page() {
                   showAlbum
                 />
               </TitleShowAll>
-            )}
+            )} */}
 
             {(userPlaylists?.count || 0) > 0 && (
               <TitleShowAll

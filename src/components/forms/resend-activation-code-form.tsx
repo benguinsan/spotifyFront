@@ -6,7 +6,7 @@ import {Label} from "@/components/ui/label";
 import Loader from "@/components/general/Loader";
 import ErrorField from "@/components/forms/error-field";
 import React from "react";
-import useResendActivationCodeForm from "@/hooks/useResendActivationCodeForm";
+import useResendActivationCodeForm from "@/components/hooks/useResendActivationCodeForm";
 
 
 export default function ResendActivationCodeForm() {
