@@ -21,7 +21,7 @@ import {CalendarIcon, Camera, Check, ImageOff} from "lucide-react";
 import {Calendar} from "@/components/ui/calendar";
 import {CaretSortIcon} from "@radix-ui/react-icons";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
-import {DetailTrack, Genres, License, ListDetailAlbums} from "@/types/types";
+import {DetailTrack, Genres, ListDetailAlbums} from "@/types/types";
 import useTrackEditForm from "@/hooks/useTrackEditForm";
 import {useEffect, useState} from "react";
 
@@ -29,11 +29,10 @@ import {useEffect, useState} from "react";
 interface Props {
   track: DetailTrack | undefined;
   albums: ListDetailAlbums | undefined;
-  license: License[] | undefined;
   genres: Genres | undefined;
 }
 
-export function TrackEditForm({track, albums, license, genres}: Props) {
+export function TrackEditForm({track, albums, genres}: Props) {
   const {
     form,
     onSubmit,
@@ -211,66 +210,6 @@ export function TrackEditForm({track, albums, license, genres}: Props) {
                             </Avatar>
 
                             {genre.name}
-                          </CommandItem>
-                        ))}
-                      </CommandList>
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="license"
-          render={({field}) => (
-            <FormItem className='flex flex-col'>
-              <FormLabel>License</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-auto justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? license?.find(
-                          (item) => item.id === field.value
-                        )?.name
-                        : "Select your license"}
-                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[280px] md:w-[340px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search my license..."/>
-                    <CommandEmpty>No license found.</CommandEmpty>
-                    <CommandGroup>
-                      <CommandList>
-                        {license?.map((item) => (
-                          <CommandItem
-                            value={item.name}
-                            key={item.id}
-                            onSelect={() => {
-                              form.setValue("license", item.id)
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-1 h-4 w-4",
-                                item.id === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {item.name}
                           </CommandItem>
                         ))}
                       </CommandList>

@@ -44,14 +44,6 @@ export default function LikedTracksPage() {
             <div className="flex items-center text-sm font-medium">
               {user && (
                 <>
-                  <Image
-                    src={user.image}
-                    alt={user.display_name}
-                    height={24}
-                    width={24}
-                    className="aspect-square object-cover rounded-full mr-1 h-6 w-6"
-                    priority
-                  />
                   {user?.artist_slug ? (
                     <Link href={`/artists/${user.artist_slug}`}
                           className="font-semibold hover:underline">{user.display_name}</Link>

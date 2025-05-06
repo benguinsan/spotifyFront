@@ -62,13 +62,19 @@ export default function Page({params}: Props) {
     router.push(`?search=${searchT}`)
   }
 
+  console.log("Search results:", {
+    hasResults: searchTracks && searchTracks.results && searchTracks.results.length > 0,
+    playlistSlug: playlist?.slug,
+    tracksPlaylistLength: playlist?.tracks?.length
+  });
+
   return (
     <MainSection bgColor={playlistBgColor}>
       <div className="h-52 md:h-60 bg-gradient-to-t from-black/20 to-black/0">
         <div className="flex items-end gap-6 p-4 pt-20 sm:pt-10">
           {playlist && (
             <>
-              {playlist.image.length > 0 ? (
+              {/* {playlist.image.length > 0 ? (
                 <Image
                   src={playlist.image}
                   alt={playlist.title}
@@ -81,7 +87,7 @@ export default function Page({params}: Props) {
                 <div className="">
                   <Music size={160} className=" bg-paper "/>
                 </div>
-              )}
+              )} */}
 
               <div className="flex flex-col gap-3">
                 {playlist?.genre && (
@@ -96,14 +102,14 @@ export default function Page({params}: Props) {
                 )}
 
                 <div className="flex items-center text-sm font-medium">
-                  <Image
+                  {/* <Image
                     src={playlist.user.image}
                     alt={playlist.user.display_name}
                     height={24}
                     width={24}
                     className="aspect-square object-cover rounded-full mr-1 h-6 w-6"
                     priority
-                  />
+                  /> */}
                   {playlist.user?.artist_slug ? (
                     <Link href={`/artists/${playlist.user.artist_slug}`}
                           className="font-semibold hover:underline">{playlist.user.display_name}</Link>
@@ -189,7 +195,7 @@ export default function Page({params}: Props) {
                   showAlbum
                   showCover
                   showIndex={false}
-                  showAddToPlaylist
+                  showAddToPlaylist={true}
                   playlistSlug={playlist?.slug}
                   tracksPlaylist={playlist?.tracks}
                   showSubtitle
@@ -209,7 +215,7 @@ export default function Page({params}: Props) {
                   showCover
                   showSubtitle
                   showIndex={false}
-                  showAddToPlaylist
+                  showAddToPlaylist={true}
                   playlistSlug={playlist?.slug}
                   tracksPlaylist={playlist?.tracks}
                 />
@@ -217,7 +223,6 @@ export default function Page({params}: Props) {
             }
           </>
         )}
-
       </ContentSection>
     </MainSection>
   );

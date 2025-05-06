@@ -34,7 +34,6 @@ export default function useTrackEditForm(track: DetailTrack | undefined) {
 
     formData.append("title", data.title);
     formData.append("album", data.album);
-    formData.append("license", data.license);
     formData.append("genre", data.genre);
     formData.append("release_date", format(data.release_date, "yyyy-MM-dd"));
     formData.append("is_private", data.is_private.toString());

@@ -8,11 +8,8 @@ import {Skeleton} from "@/components/ui/skeleton";
 import Header from "@/components/general/Header";
 import ContentSection from "@/components/general/content-section";
 import {
-  accountMyAnalyticsUrl,
   accountMyArtistAlbumsUrl,
   accountMyArtistTracksUrl,
-  accountMyHelpUrl,
-  accountMyPaymentUrl,
   accountMyProfileArtistUrl,
   accountMySettingsUrl,
   accountMyUrl, profileMyUrl
@@ -45,10 +42,6 @@ export default function SettingsLayout({children}: SettingsLayoutProps) {
         title: "Settings",
         href: accountMySettingsUrl,
       },
-      {
-        title: "Help",
-        href: accountMyHelpUrl,
-      },
     ]
   } else if (user?.type_profile === "Artist") {
     sidebarNavItems = [
@@ -71,10 +64,6 @@ export default function SettingsLayout({children}: SettingsLayoutProps) {
       {
         title: "Settings",
         href: accountMySettingsUrl,
-      },
-      {
-        title: "Help",
-        href: accountMyHelpUrl,
       },
     ]
   }

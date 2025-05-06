@@ -18,9 +18,6 @@ export const trackFormSchema = z.object({
       message: "Title must not be longer than 100 characters.",
     }),
   image: z.any(),
-  license: z.any({
-    required_error: "Please select a license.",
-  }),
   genre: z.any({
     required_error: "Please select a genre.",
   }),
@@ -54,7 +51,6 @@ export default function useTrackCreateForm() {
       title: '',
       image: '',
       album: null,
-      license: null,
       genre: null,
       file: '',
       release_date: format(new Date(), "yyyy-MM-dd"),
@@ -74,7 +70,6 @@ export default function useTrackCreateForm() {
     formData.append("title", data.title);
     formData.append("file", data.file[0], data.file[0].name);
     formData.append("album", data.album);
-    formData.append("license", data.license);
     formData.append("genre", data.genre);
     formData.append("release_date", format(data.release_date, "yyyy-MM-dd"));
     formData.append("is_private", data.is_private.toString());

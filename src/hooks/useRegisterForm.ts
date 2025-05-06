@@ -18,6 +18,9 @@ const registerFormSchema = z.object({
     })
     .max(40, {
       message: "Password must not be longer then 40 characters"
+    })
+    .regex(/^(?=.*[A-Za-z])(?=.*\d).+$/, {
+      message: "Password must contain at least one letter and one number"
     }),
   re_password: z
     .string(),
@@ -48,7 +51,7 @@ export default function useRegisterForm() {
     registerUser({...data})
       .unwrap()
       .then(() => {
-        toast.info("Please check email to verify account.")
+        toast.success("Đăng ký thành công!")
         router.push(loginUrl)
       })
       .catch((error) => {

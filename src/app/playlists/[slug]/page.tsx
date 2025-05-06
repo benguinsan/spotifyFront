@@ -19,6 +19,7 @@ import {useListUserPlaylistLikedQuery} from "@/lib/features/playlists/playlistAp
 import {useEffect} from "react";
 import {redirect} from "next/navigation";
 
+
 interface Props {
     params: {
         slug: string;
@@ -32,17 +33,25 @@ export default function PlaylistPage({params}: Props) {
         isLoading,
         isFetching,
     } = useRetrievePlaylistQuery(params.slug)
+    
+    console.log("Playlist received:", playlist);
+    
     const genreSlug = playlist?.genre?.slug || null
     const {
         data: recommendations,
         isLoading: isLoadingRec,
         isFetching: isFetchingRec,
     } = useListTrackQuery({genreSlug}, {skip: !genreSlug})
+    
+    console.log("Recommendations received:", recommendations);
+    
     const {
         data: playlistsFav,
         isLoading: isLoadingPlFav,
         isFetching: isFetchingPlFav,
     } = useListUserPlaylistLikedQuery({}, {skip: !isAuthenticated || !params.slug});
+    
+    console.log("Playlists favorites:", playlistsFav);
 
     const load = isLoading || isFetching || isLoadingRec || isFetchingRec || isLoadingPlFav || isFetchingPlFav
 
@@ -60,7 +69,7 @@ export default function PlaylistPage({params}: Props) {
                 <div className="flex items-end gap-6 p-4 pt-20 sm:pt-10">
                     {playlist && (
                         <>
-                            {playlist.image.length > 0 ? (
+                            {playlist.image && playlist.image.length > 0 ? (
                                 <Image
                                     src={playlist.image}
                                     alt={playlist.title}
@@ -70,8 +79,8 @@ export default function PlaylistPage({params}: Props) {
                                     priority
                                 />
                             ) : (
-                                <div>
-                                    <Music size={160} className=" bg-paper "/>
+                                <div className="aspect-square shadow-2xl rounded-sm h-24 w-24 sm:h-32 sm:w-32 md:h-44 md:w-44 bg-paper flex items-center justify-center">
+                                    <Music size={80} className="text-white/70"/>
                                 </div>
                             )}
 
@@ -88,14 +97,21 @@ export default function PlaylistPage({params}: Props) {
                                 )}
 
                                 <div className="flex items-center text-sm font-medium">
-                                    <Image
-                                        src={playlist.user.image}
-                                        alt={playlist.user.display_name}
-                                        height={24}
-                                        width={24}
-                                        className="aspect-square object-cover rounded-full mr-1 h-6 w-6"
-                                        priority
-                                    />
+                                    {playlist.user.image ? (
+                                        <Image
+                                            src={playlist.user.image}
+                                            alt={playlist.user.display_name}
+                                            height={24}
+                                            width={24}
+                                            className="aspect-square object-cover rounded-full mr-1 h-6 w-6"
+                                            priority
+                                        />
+                                    ) : (
+                                        <div className="aspect-square rounded-full mr-1 h-6 w-6 bg-gray-700 flex items-center justify-center">
+                                            <span className="text-xs text-white">{playlist.user.display_name.charAt(0)}</span>
+                                        </div>
+                                    )}
+                                    
                                     {playlist.user?.artist_slug ? (
                                         <Link href={`/artists/${playlist.user.artist_slug}`}
                                               className="font-semibold hover:underline">{playlist.user.display_name}</Link>
@@ -108,9 +124,9 @@ export default function PlaylistPage({params}: Props) {
                                         <>
                                             <Dot/>
                                             <span>
-                      {playlist.favorite_count.toLocaleString()}{" "}
+                                                {playlist.favorite_count.toLocaleString()}{" "}
                                                 {playlist.favorite_count > 1 ? "saves" : "save"}
-                    </span>
+                                            </span>
                                         </>
                                     )}
                                     {playlist.tracks.length > 0 && (

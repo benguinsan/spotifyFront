@@ -11,7 +11,4 @@ export const accountMySettingsUrl = '/account/my/settings';
 export const accountMyProfileArtistUrl = '/account/my/artist';
 export const accountMyArtistTracksUrl = '/account/my/artist/tracks';
 export const accountMyArtistAlbumsUrl = '/account/my/artist/albums';
-export const accountMyPaymentUrl = "/account/my/payment";
-export const accountMyAnalyticsUrl = "/account/my/analytics";
-export const accountMyHelpUrl = "/account/my/help";
 export const collectionTracks = "/collection/tracks";
