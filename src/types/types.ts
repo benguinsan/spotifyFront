@@ -266,14 +266,3 @@ export interface Genres extends ListBaseApi {
   results: Genre[];
 }
 
-export interface Subscription extends BaseApi {
-  name: string;
-  price: string;
-  description: string;
-  days_exp: number;
-  feature: {
-    id: number;
-    name: string;
-    permission: string;
-  }[];
-}

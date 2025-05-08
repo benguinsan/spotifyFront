@@ -125,12 +125,15 @@ export default function AlbumsPage({params}: Props) {
               slugFav={album?.slug}
             />
 
-            <div>
-              <TracksTable
-                tracks={album?.tracks}
-                showHeader
-                showSubtitle
-              />
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-[768px] max-w-full">
+                <TracksTable
+                  tracks={album?.tracks}
+                  showHeader
+                  showSubtitle
+                  showAddToPlaylist={isAuthenticated}
+                />
+              </div>
             </div>
 
             {album?.release_date && (

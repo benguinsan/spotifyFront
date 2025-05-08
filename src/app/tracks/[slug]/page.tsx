@@ -169,7 +169,7 @@ export default function TracksPage({params}: Props) {
                   showSubtitle
                   showPlaysCount
                   showIndex={false}
-                />
+              />
               </TitleShowAll>
             }
 
@@ -208,13 +208,7 @@ export default function TracksPage({params}: Props) {
               </TitleShowAll>
             )}
 
-            {trackAlbum && (
-              <TracksTable
-                tracks={trackAlbum.tracks}
-                showCardHeader
-                showSubtitle
-              />
-            )}
+    
 
             {track?.release_date && (
               <div className="ml-4">

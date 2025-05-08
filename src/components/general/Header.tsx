@@ -25,7 +25,7 @@ export default function Header({bgOpacity =0.9, bgOpacityBlack = 0, bgColor = '#
   const router = useRouter();
 
   // Add console log to debug auth state
-  console.log("Auth state:", { isAuthenticated, isLoading, user });
+  // console.log("Auth state:", { isAuthenticated, isLoading, user });
 
   return (
     <header
