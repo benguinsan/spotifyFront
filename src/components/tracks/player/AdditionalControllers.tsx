@@ -76,16 +76,6 @@ export default function AdditionalControllers() {
 
   return (
     <div className="flex items-center absolute right-5 col-span-1 sm:col-span-3 gap-3">
-      {/* Icons */}
-      {user?.is_premium && (
-        <button
-          className="hidden lg:block disabled:cursor-not-allowed"
-          onClick={handleDownloadTrack}
-          disabled={isDownloading}
-        >
-          {isDownloading ? <Loader className="w-[20px] h-[20px]"/> : <Download size={20} className="text-white/60 hover:text-gray-100"/>}
-        </button>
-      )}
       <button className="hidden md:block">
         <Mic2 size={20} className="text-white/60 hover:text-gray-100"/>
       </button>

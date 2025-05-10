@@ -30,7 +30,6 @@ export interface User extends BaseApi {
   country: string;
   image: string;
   color: string;
-  is_premium: boolean;
   followers_count: number;
   following_count: number;
   playlists_count: number;
@@ -43,7 +42,6 @@ export interface UserProfile extends BaseApi {
   gender: string;
   country: string;
   image: string;
-  is_premium: boolean;
 }
 
 export interface ShortUser extends BaseApi {
@@ -52,7 +50,6 @@ export interface ShortUser extends BaseApi {
   artist_slug: string;
   image: string;
   followers_count: number;
-  is_premium: boolean;
 }
 
 export interface ShortUsers extends ListBaseApi {

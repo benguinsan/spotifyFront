@@ -10,6 +10,8 @@ import Loader from "@/components/general/Loader";
 import useLoginForm from "@/hooks/useLoginForm";
 import {artistProfileMyUrl, profileMyUrl} from "@/utils/consts";
 import ErrorField from "@/components/forms/error-field";
+import {ChromeIcon} from "lucide-react";
+import {continueWithGoogle} from "@/utils";
 
 
 export default function LoginForm() {
@@ -31,6 +33,19 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="space-y-2 mb-6">
+        <Button
+          variant="outline"
+          type="button"
+          size="lg"
+          className="w-full rounded-full bg-black text-md font-medium border-white/50"
+          onClick={continueWithGoogle}
+        >
+          <ChromeIcon className="mr-2 h-5 w-5"/>
+          Continue with Google
+        </Button>
+      </div>
+
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email address</Label>

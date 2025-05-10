@@ -42,17 +42,7 @@ export function SidebarMobile({isLoading, isAuthenticated}: { isLoading: boolean
             <UserLibrary/>
 
             {isLoading ? <Skeleton className="h-12 w-12 rounded-full"/> :
-              isAuthenticated ? (
-                <div className="flex items-center space-x-4 p-2 pt-10">
-                  <Link href={`/premium`}>
-                    <Button variant="outline"
-                            className="h-8 border-2 border-[#404040] hover:bg-[#252525] hover:scale-105 duration-150 bg-[#202020] rounded-full font-medium"
-                            size="default">
-                      Explore Premium
-                    </Button>
-                  </Link>
-                </div>
-              ) : (
+              !isAuthenticated && (
                 <div className="flex items-center justify-center w-full space-x-2 pt-10">
                   <Link href={signupUrl}>
                     <Button variant="ghost" className="block rounded-full font-semibold"
