@@ -19,22 +19,22 @@ export default function AdditionalControllers() {
 
   const [triggerDownloadTrack, {isFetching: isDownloading}] = useLazyDownloadTrackQuery();
 
-  const handleDownloadTrack = () => {
-    if (activeTrack?.slug) {
-      triggerDownloadTrack(activeTrack.slug)
-        .unwrap()
-        .then((blob) => {
-          const url = window.URL.createObjectURL(new Blob([blob]));
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', `track-${activeTrack.slug}.mp3`);
-          document.body.appendChild(link);
-          link.click();
-          link.parentNode?.removeChild(link);
-        })
-        .catch(error => console.error('Failed to download track', error));
-    }
-  };
+  // const handleDownloadTrack = () => {
+  //   if (activeTrack?.slug) {
+  //     triggerDownloadTrack(activeTrack.slug)
+  //       .unwrap()
+  //       .then((blob) => {
+  //         const url = window.URL.createObjectURL(new Blob([blob]));
+  //         const link = document.createElement('a');
+  //         link.href = url;
+  //         link.setAttribute('download', `track-${activeTrack.slug}.mp3`);
+  //         document.body.appendChild(link);
+  //         link.click();
+  //         link.parentNode?.removeChild(link);
+  //       })
+  //       .catch(error => console.error('Failed to download track', error));
+  //   }
+  // };
 
   const [isFullscreen, setIsFullscreen] = useState(false);
 
